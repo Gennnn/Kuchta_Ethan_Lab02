@@ -1,4 +1,4 @@
-import me.ethan.productgenerator.Product;
+import me.ethan.productgenerator.Person;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -6,13 +6,13 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class UnitTest {
 
-    Product p1, p2;
+    Person p1, p2;
 
 
     @BeforeEach
     void setUp() {
-        p1 = new Product(00001, "Apple", "Red round fruit", 2.99);
-        p2 = new Product(00002, "Banana", "Yellow curved fruit", 1.99);
+        p1 = new Person(00001, "John", "Doe", "Mr.", 2000);
+        p2 = new Person(00002, "Jane", "Buck", "Mrs.", 1999);
     }
 
     @Test
@@ -21,54 +21,97 @@ public class UnitTest {
     }
 
     @Test
-    void getProductName() {
-        assertEquals("Apple", p1.getName());
+    void getPersonFirstName() {
+        assertEquals("John", p1.getFirstName());
     }
 
     @Test
-    void getProductDesc() {
-        assertEquals("Red round fruit", p1.getDescription());
+    void getPersonLastName() {
+        assertEquals("Doe", p1.getLastName());
     }
 
     @Test
-    void getProductPrice() {
-        assertEquals(2.99, p1.getPrice());
+    void getTitle() {
+        assertEquals("Mr.", p1.getTitle());
     }
 
     @Test
-    void setProductID() {
+    void getBirthYear() {
+        assertEquals(2000, p1.getBirthYear());
+    }
+
+    @Test
+    void setPersonID() {
         p1.setID(00002);
         assertEquals(00002, p1.getID());
     }
 
     @Test
-    void setProductName() {
-        p1.setName("Banana");
-        assertEquals("Banana", p1.getName());
+    void setPersonFirstName() {
+        p1.setFirstName("Jane");
+        assertEquals("Jane", p1.getFirstName());
     }
 
     @Test
-    void setProductDesc() {
-        p1.setDescription("Yellow curved fruit");
-        assertEquals("Yellow curved fruit", p1.getDescription());
+    void setLastName() {
+        p1.setLastName("Buck");
+        assertEquals("Buck", p1.getLastName());
 
     }
 
     @Test
-    void setProductPrice() {
-        p1.setPrice(1.99);
-        assertEquals(1.99, p1.getPrice());
+    void setTitle() {
+        p1.setTitle("Mrs.");
+        assertEquals("Mrs.", p1.getTitle());
+
+    }
+
+    @Test
+    void setBirthYEAR() {
+        p1.setBirthYear(1999);
+        assertEquals(1999, p1.getBirthYear());
     }
 
     @Test
     void equals() {
         p1.setID(00002);
-        p1.setName("Banana");
-        p1.setDescription("Yellow curved fruit");
-        p1.setPrice(1.99);
-        System.out.println(p1.toCSVDataRecord());
-        System.out.println(p2.toCSVDataRecord());
+        p1.setFirstName("Jane");
+        p1.setLastName("Buck");
+        p1.setTitle("Mrs.");
+        p1.setBirthYear(1999);
         assertEquals(true, p1.toCSVDataRecord().equals(p2.toCSVDataRecord()));
+
+
+    }
+
+    @Test
+    void fullName() {
+        p1.setFirstName("John");
+        p1.setLastName("Doe");
+        assertEquals("John Doe", p1.fullName());
+
+
+    }
+    @Test
+    void formalName() {
+        p1.setFirstName("John");
+        p1.setLastName("Doe");
+        p1.setTitle("Mr.");
+        assertEquals("Mr. John Doe", p1.formalName());
+
+
+    }
+    @Test
+    void getAge() {
+        p1.setBirthYear(2000);
+        assertEquals(23, p1.getAge());
+
+
+    }
+    @Test
+    void getAgeSetYear() {
+        p1.setBirthYear(2000);
+        assertEquals(2, p1.getAge(2002));
 
 
     }

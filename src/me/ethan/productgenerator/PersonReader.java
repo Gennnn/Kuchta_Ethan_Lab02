@@ -11,9 +11,9 @@ import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ProductReader {
+public class PersonReader {
 
-    public static void ProductReader() throws IOException, InterruptedException {
+    public static void PersonReader() throws IOException, InterruptedException {
         System.out.println("Please select the file you'd like to read from:");
         Thread.sleep(1000);
         FileNameExtensionFilter filter = new FileNameExtensionFilter(".txt files", "txt");
@@ -21,7 +21,6 @@ public class ProductReader {
         chooser.setFileFilter(filter);
         chooser.setCurrentDirectory(new File (System.getProperty("user.dir")));
         ArrayList<String> readArray = new ArrayList<>();
-        DecimalFormat df = new DecimalFormat("0.00");
         int result = chooser.showOpenDialog(null);
         if (result == chooser.APPROVE_OPTION) {
             File file = chooser.getSelectedFile();
@@ -30,27 +29,27 @@ public class ProductReader {
 
             List lines = Files.readAllLines(path);
             String display[][] = new String[5][lines.size()];
-            ArrayList<Product> productArray = new ArrayList<>();
+            ArrayList<Person> personArray = new ArrayList<>();
             int cellLength = 0;
             int rowLargestCell = 0;
             int colLargestCell = 0;
             for (int i = 0; i < lines.size(); i++) {
                 String fullLine = (String) lines.get(i);
-                String splitLine[] = fullLine.split(", ", 4);
+                String splitLine[] = fullLine.split(", ", 5);
 
-                for (int j = 0; j < 4; j++) {
+                for (int j = 0; j < 5; j++) {
 
                     splitLine[j] = splitLine[j].replaceAll("<comma>", ",");
                     if (splitLine[j].length() > cellLength) {
                         cellLength = splitLine[j].length();
                     }
                 }
-                productArray.add(new Product(Integer.parseInt(splitLine[0]), splitLine[1], splitLine[2], Double.parseDouble(splitLine[3])));
+                personArray.add(new Person(Integer.parseInt(splitLine[0]), splitLine[1], splitLine[2], splitLine[3], Integer.parseInt(splitLine[4])));
             }
             if (cellLength < 5) {
                 cellLength = 5;
             }
-            int rowLength = ("| " + " | " + " | " + " | " + " |").length() + ( cellLength*4 );
+            int rowLength = ("| " + " | " + " | " + " | " + " |").length() + ( cellLength*5 );
             for (int i = 0; i < rowLength; i++) {
                 System.out.print("-");
             }
@@ -70,10 +69,11 @@ public class ProductReader {
             }
             System.out.print("\n");
             String idPrintString = "";
-            String namePrintString = "";
-            String descriptionPrintString = "";
-            String pricePrintString = "";
-                for (int k = 0; k < 4; k++) {
+            String firstNamePrintString = "";
+            String lastNamePrintString = "";
+            String titlePrintString = "";
+            String birthYearPrintString = "";
+                for (int k = 0; k < 5; k++) {
                     if (k == 0) {
                         String idString = "ID";
                         while (idString.length() < cellLength) {
@@ -81,27 +81,34 @@ public class ProductReader {
                         }
                         idPrintString = "| " + idString;
                     } else if (k == 1) {
-                        String nameString = "NAME";
-                        while (nameString.length() < cellLength) {
-                            nameString = nameString + " ";
+                        String firstnameString = "FIRST";
+                        while (firstnameString.length() < cellLength) {
+                            firstnameString = firstnameString + " ";
                         }
-                        namePrintString = " | " + nameString;
+                        firstNamePrintString = " | " + firstnameString;
                     } else if (k == 2) {
-                        String descriptionString = "DESC";
-                        while (descriptionString.length() < cellLength) {
-                            descriptionString = descriptionString + " ";
+                        String lastNameString = "LAST";
+                        while (lastNameString.length() < cellLength) {
+                            lastNameString = lastNameString + " ";
                         }
-                        descriptionPrintString = " | " + descriptionString;
+                        lastNamePrintString = " | " + lastNameString;
                     } else if (k == 3) {
-                        String priceString = "PRICE";
-                        while (priceString.length() < cellLength) {
-                            priceString = priceString + " ";
+                        String titleString = "TITLE";
+                        while (titleString.length() < cellLength) {
+                            titleString = titleString + " ";
                         }
-                        pricePrintString = " | " + priceString;
+                        titlePrintString = " | " + titleString;
+
+                    } else if (k == 4) {
+                        String birthYearString = "YOB";
+                        while (birthYearString.length() < cellLength) {
+                            birthYearString = birthYearString + " ";
+                        }
+                        birthYearPrintString = " | " + birthYearString;
 
                     }
                 }
-            System.out.println(idPrintString+namePrintString+descriptionPrintString+pricePrintString);
+            System.out.println(idPrintString+firstNamePrintString+lastNamePrintString+titlePrintString+birthYearPrintString);
 
                 for (int k = 0; k < rowLength; k++) {
                     System.out.print("-");
@@ -109,37 +116,44 @@ public class ProductReader {
                 System.out.print("\n");
 
             for (int i = 0; i < lines.size(); i++) {
-                for (int k = 0; k < 4; k++) {
+                for (int k = 0; k < 5; k++) {
                     if (k==0) {
-                        String idString = Integer.toString(productArray.get(i).getID());
+                        String idString = Integer.toString(personArray.get(i).getID());
                         while (idString.length() < cellLength) {
                             idString = idString + " ";
                         }
                         idPrintString = "| " + idString;
                     } else if (k==1) {
-                        String nameString = productArray.get(i).getName();
-                        while (nameString.length() < cellLength) {
-                            nameString = nameString+ " ";
+                        String firstNameString = personArray.get(i).getFirstName();
+                        while (firstNameString.length() < cellLength) {
+                            firstNameString = firstNameString+ " ";
                         }
-                        namePrintString = " | " + nameString;
+                        firstNamePrintString = " | " + firstNameString;
                     } else if (k==2) {
-                        String descriptionString = productArray.get(i).getDescription();
-                        while (descriptionString.length() < cellLength) {
-                            descriptionString = descriptionString+ " ";
+                        String lastNameString = personArray.get(i).getLastName();
+                        while (lastNameString.length() < cellLength) {
+                            lastNameString = lastNameString+ " ";
                         }
-                        descriptionPrintString = " | " + descriptionString;
+                        lastNamePrintString = " | " + lastNameString;
                     } else if (k==3) {
-                        String priceString = df.format(productArray.get(i).getPrice());
-                        while (priceString.length() < cellLength) {
-                            priceString = priceString + " ";
+                        String titleString = personArray.get(i).getTitle();
+                        while (titleString.length() < cellLength) {
+                            titleString = titleString + " ";
                         }
-                        pricePrintString = " | " + priceString + " |";
+                        titlePrintString = " | " + titleString + " |";
+
+                    } else if (k==4) {
+                        String birthYearString = Integer.toString(personArray.get(i).getBirthYear());
+                        while (birthYearString.length() < cellLength) {
+                            birthYearString = birthYearString + " ";
+                        }
+                        titlePrintString = " | " + birthYearString + " |";
 
                     }
 
 
                 }
-                    System.out.println(idPrintString+namePrintString+descriptionPrintString+pricePrintString);
+                    System.out.println(idPrintString+firstNamePrintString+lastNamePrintString+titlePrintString+birthYearPrintString);
 
 
             }
