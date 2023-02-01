@@ -1,5 +1,4 @@
-package me.ethan.persongenerator;
-
+package me.ethan.productgenerator;
 
 import java.util.Scanner;
 

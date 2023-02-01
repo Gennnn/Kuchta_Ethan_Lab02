@@ -1,0 +1,5 @@
+00001, Apple, Red round fruit, 2.99
+00002, Orange, Orange round fruit, 2.59
+00003, Dragonfruit, Pink spiky fruit, 4.99
+00004, Lime, Green sour fruit, 1.59
+00005, Lemon, Yellow sour fruit, 1.69
