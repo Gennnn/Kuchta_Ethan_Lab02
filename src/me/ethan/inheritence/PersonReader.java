@@ -1,4 +1,4 @@
-package me.ethan.productgenerator;
+package me.ethan.inheritence;
 
 import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
@@ -7,7 +7,6 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 

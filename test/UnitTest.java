@@ -1,4 +1,4 @@
-import me.ethan.productgenerator.Person;
+import me.ethan.inheritence.Person;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

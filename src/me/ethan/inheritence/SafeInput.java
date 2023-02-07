@@ -1,4 +1,4 @@
-package me.ethan.productgenerator;
+package me.ethan.inheritence;
 
 import java.util.Scanner;
 

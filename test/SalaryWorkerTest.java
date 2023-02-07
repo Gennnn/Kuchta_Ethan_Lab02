@@ -1,6 +1,4 @@
-import me.ethan.productgenerator.Person;
-import me.ethan.productgenerator.SalaryWorker;
-import me.ethan.productgenerator.Worker;
+import me.ethan.inheritence.SalaryWorker;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
