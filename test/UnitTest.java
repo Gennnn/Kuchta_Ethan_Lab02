@@ -11,13 +11,13 @@ public class UnitTest {
 
     @BeforeEach
     void setUp() {
-        p1 = new Person(00001, "John", "Doe", "Mr.", 2000);
-        p2 = new Person(00002, "Jane", "Buck", "Mrs.", 1999);
+        p1 = new Person("00001", "John", "Doe", "Mr.", 2000);
+        p2 = new Person("00002", "Jane", "Buck", "Mrs.", 1999);
     }
 
     @Test
         void getIDNum() {
-            assertEquals(00001, p1.getID());
+            assertEquals("00001", p1.getID());
     }
 
     @Test
@@ -42,8 +42,8 @@ public class UnitTest {
 
     @Test
     void setPersonID() {
-        p1.setID(00002);
-        assertEquals(00002, p1.getID());
+        p1.setID("00002");
+        assertEquals("00002", p1.getID());
     }
 
     @Test
@@ -74,12 +74,12 @@ public class UnitTest {
 
     @Test
     void equals() {
-        p1.setID(00002);
+        p1.setID("00002");
         p1.setFirstName("Jane");
         p1.setLastName("Buck");
         p1.setTitle("Mrs.");
         p1.setBirthYear(1999);
-        assertEquals(true, p1.toCSVDataRecord().equals(p2.toCSVDataRecord()));
+        assertEquals(true, p1.equals(p2));
 
 
     }

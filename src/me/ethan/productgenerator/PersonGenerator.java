@@ -9,14 +9,7 @@ import java.util.Scanner;
 
 public class PersonGenerator {
     public static void main(String args[]) throws IOException, InterruptedException {
-        Scanner scanner = new Scanner(System.in);
-        String action = "";
-        action = SafeInput.getRegExString(scanner, "Would you like to write a new Person Data file, or read an exisiting Person Data file?\n[Please enter either WRITE or READ]", "(?i)write|read");
-        if (action.equalsIgnoreCase("write")) {
-            PersonGen(scanner);
-        } else if (action.equalsIgnoreCase("read")) {
-            PersonReader.PersonReader();
-        }
+        InheritenceDemo.InheritenceDem();
     }
 
     public static void PersonGen(Scanner scanner) throws IOException {
@@ -41,7 +34,7 @@ public class PersonGenerator {
             firstName = firstName.replaceAll(",", "<comma>");
             lastName = lastName.replaceAll(",", "<comma>");
             title = title.replaceAll(",", "<comma>");
-            personArray.add(new Person(personArray.size() + 1, firstName, lastName, title, birthYear));
+            personArray.add(new Person(Integer.toString(personArray.size() + 1), firstName, lastName, title, birthYear));
             pass = SafeInput.getYNConfirm(scanner, "Would you like to add another person?");
         } while (pass);
 

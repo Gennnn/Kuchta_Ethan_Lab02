@@ -1,16 +1,17 @@
 package me.ethan.productgenerator;
 
 import java.time.Year;
+import java.util.Objects;
 
 public class Person {
 
-    private int ID;
+    private String ID;
     private String firstName;
     private String lastName;
     private String title;
     private int birthYear;
 
-    public Person(int ID, String firstName, String lastName, String title, int birthYear) {
+    public Person(String ID, String firstName, String lastName, String title, int birthYear) {
         this.ID = ID;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -18,11 +19,11 @@ public class Person {
         this.birthYear = birthYear;
     }
 
-    public int getID() {
+    public String getID() {
         return ID;
     }
 
-    public void setID(int ID) {
+    public void setID(String ID) {
         this.ID = ID;
     }
 
@@ -67,6 +68,19 @@ public class Person {
                 ", title='" + title + '\'' +
                 ", birthYear=" + birthYear +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Person person = (Person) o;
+        return birthYear == person.birthYear && ID.equals(person.ID) && firstName.equals(person.firstName) && lastName.equals(person.lastName) && title.equals(person.title);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(ID, firstName, lastName, title, birthYear);
     }
 
     /**

@@ -44,7 +44,7 @@ public class PersonReader {
                         cellLength = splitLine[j].length();
                     }
                 }
-                personArray.add(new Person(Integer.parseInt(splitLine[0]), splitLine[1], splitLine[2], splitLine[3], Integer.parseInt(splitLine[4])));
+                personArray.add(new Person(splitLine[0], splitLine[1], splitLine[2], splitLine[3], Integer.parseInt(splitLine[4])));
             }
             if (cellLength < 5) {
                 cellLength = 5;
@@ -118,7 +118,7 @@ public class PersonReader {
             for (int i = 0; i < lines.size(); i++) {
                 for (int k = 0; k < 5; k++) {
                     if (k==0) {
-                        String idString = Integer.toString(personArray.get(i).getID());
+                        String idString = (personArray.get(i).getID());
                         while (idString.length() < cellLength) {
                             idString = idString + " ";
                         }
